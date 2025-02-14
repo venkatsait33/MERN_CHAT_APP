@@ -11,10 +11,12 @@ const app = express();
 
 const PORT = process.env.PORT || 4000;
 
+const URL = " http://localhost:5173"
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(cors({
-    url: "http://localhost:3000",
+    origin: URL,
     credentials: true
 }));
 
