@@ -61,7 +61,7 @@ export const loginUser = async (req, res) => {
         }
 
         generateToken(user._id, res);
-        
+
         res.status(200).json({
             _id: user._id,
             fullName: user.fullName,
@@ -88,7 +88,7 @@ export const logoutUser = (req, res) => {
 export const updateProfile = async (req, res) => {
     try {
         const { profilePic } = req.body;
-        const userId = req.user?._id;
+        const userId = req.user._id;
         if (!profilePic) {
             return res.status(400).json({ message: 'Please provide profile pic', success: false })
         }
