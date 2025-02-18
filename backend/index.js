@@ -21,7 +21,7 @@ app.use(cors({
 }));
 
 app.use('/api/auth', userRoutes)
-app.use('/api/message', messageRouter)
+app.use('/api/messages', messageRouter)
 
 app.use('/', (req, res) => {
     res.send("welcome to the backend")
