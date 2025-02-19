@@ -28,6 +28,17 @@
    - Clicking on **Logout** clears the authentication **token from cookies** and redirects the user to the login page.
    - Used **cookie-parser** and Express middleware to handle session cleanup.
 
+6. **Chat Container Implementation:**
+   - Created **ChatContainer** with three main sections:
+     - **ChatHeader:** Displays the selected user's **name** and **online/offline status**.
+     - **Message Section:** Shows the messages exchanged between the logged-in user and the selected user.
+     - **ChatInput:** Allows users to send text and images.
+   - Implemented **Image Preview** before sending.
+   - Images are uploaded and stored using **Cloudinary** in the backend **message.controller**.
+
+### Next Steps:
+- Implement **Socket.io** to fetch and display messages in **real-time**. ⚡
+
 ### Tech Stack Used:
 
 #### Frontend:
@@ -44,12 +55,12 @@
 - **Express.js**
 - **MongoDB** (Database)
 - **JWT Authentication** (for user auth)
-- **Cloudinary** (for profile image storage)
+- **Cloudinary** (for profile image and message image storage)
 - **bcrypt** (for password hashing)
 - **cookie-parser** (for handling cookies)
 - **dotenv** (for environment variables)
 - **CORS** (for cross-origin requests)
 
 ---
-This completes the tasks for today. Moving forward, the next steps include setting up real-time messaging using **Socket.io** and integrating chat functionalities. 🚀
+This completes the tasks for today. Moving forward, the next steps include setting up **real-time messaging using Socket.io** and integrating chat functionalities. 🚀
 
