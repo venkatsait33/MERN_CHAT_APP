@@ -36,6 +36,13 @@ const SideBar = () => {
                                         <span className='absolute bottom-0 right-0 bg-green-500 rounded-full size-3 ring-2 ring-zinc-900' />
                                     )
                                 }
+                                
+                            </div>
+                            <div className="hidden min-w-0 text-left lg:block">
+                                <div className="font-medium truncate">{user.fullName}</div>
+                                <div className="text-sm text-zinc-400">
+                                    {onlineUsers.includes(user._id) ? "Online" : "Offline"}
+                                </div>
                             </div>
                         </button>
                     ))

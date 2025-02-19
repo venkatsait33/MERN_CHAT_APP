@@ -11,10 +11,11 @@ const app = express();
 
 const PORT = process.env.PORT || 4000;
 
-const URL = " http://localhost:5173"
+const URL = "http://localhost:5173"
 
 app.use(cookieParser());
-app.use(express.json());
+app.use(express.json({ limit: "10mb" })); // Increase JSON payload size limit
+app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(cors({
     origin: URL,
     credentials: true

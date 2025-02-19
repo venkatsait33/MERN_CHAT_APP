@@ -43,15 +43,16 @@ export const getMessage = async (req, res) => {
 
 export const sendMessage = async (req, res) => {
     try {
-
         const { text, image } = req.body;
-        const { id: receiverId } = req.params
-        const senderId = req.user._id
+        const { id: receiverId } = req.params;
+        const senderId = req.user._id;
         let imageUrl;
+
         if (image) {
             const uploadImage = await cloudinary.uploader.upload(image);
             imageUrl = uploadImage.secure_url;
         }
+
         const newMessage = new Message({
             senderId,
             receiverId,
@@ -61,11 +62,16 @@ export const sendMessage = async (req, res) => {
 
         await newMessage.save();
 
-        //todo realtime functionality goes for socket io
+        console.log("Message saved:", newMessage); // Debug log
 
-        res.status(200).json({ message: "Message sent successfully", data: newMessage });
+        res.status(200).json({
+            success: true,
+            message: "Message sent successfully",
+            data: newMessage, // Ensure 'data' is included
+        });
+
     } catch (error) {
-        console.log(error)
-        return res.status(500).json({ message: "Error in sending message" })
+        console.error("Error in sendMessage:", error); // Improved error logging
+        return res.status(500).json({ success: false, message: "Error in sending message" });
     }
-}
+};

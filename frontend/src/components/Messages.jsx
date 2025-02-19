@@ -1,7 +1,9 @@
 
-const Messages = () => {
+const Messages = ({ messages, authUser }) => {
   return (
-    <div>Messages</div>
+    <div>
+     
+    </div>
   )
 }
 
