@@ -16,23 +16,15 @@ function App() {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore()
   const { theme } = useThemeStore()
 
-  console.log(onlineUsers)
-
   useEffect(() => {
     checkAuth()
   }, [checkAuth]);
-
-  console.log({ authUser })
 
   if (isCheckingAuth && !authUser) return (
     <div className="flex justify-center h-screen item-center" >
       <Loader2 className="size-10 animate-spin" />
     </div>
   )
-
-
-
-
   return (
     <div data-theme={theme}>
       <NavBar />
