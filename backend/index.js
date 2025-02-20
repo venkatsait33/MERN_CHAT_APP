@@ -5,13 +5,13 @@ import cookieParser from 'cookie-parser';
 import { connectDB } from './db/db.js';
 import userRoutes from './routes/auth.route.js'
 import messageRouter from './routes/message.route.js'
+import { app, server } from './lib/socket.js';
 
 dotenv.config();
-const app = express();
 
 const PORT = process.env.PORT || 4000;
 
-const URL = "http://localhost:5173"
+const URL = process.env.FRONTEND_URL ||"http://localhost:5173"
 
 app.use(cookieParser());
 app.use(express.json({ limit: "10mb" })); // Increase JSON payload size limit
@@ -28,7 +28,7 @@ app.use('/', (req, res) => {
     res.send("welcome to the backend")
 })
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
     connectDB()
 })
