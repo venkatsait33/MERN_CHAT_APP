@@ -40,7 +40,7 @@ const SideBar = () => {
             </div>
             <div className='w-full py-3 overflow-y-auto'>
                 {
-                    filteredUsers.map((user) => (
+                    filteredUsers?.map((user) => (
                         <button key={user._id} className={`w-full p-3 flex items-center gap-3 hover:bg-base-300 transition-colors ${selectedUser?._id === user._id ? 'bg-base-300' : ''}`} onClick={() => setSelectedUser(user)}>
                             <div className='relative mx-auto lg:mx-0'>
                                 <img src={user?.profilePic} className='object-cover rounded-full size-12' />
@@ -62,7 +62,7 @@ const SideBar = () => {
                 }
 
                 {
-                    filteredUsers.length === 0 && (
+                    filteredUsers?.length === 0 && (
                         <div className="py-4 text-center text-zinc-400">
                             No online users 
                         </div>
