@@ -51,7 +51,7 @@ VITE_BACKEND_URL=http://localhost:5000 # or deployed backend URL
 
 #### **Backend Setup:**  
 ```bash
-git clone [https://github.com/your-repo/chatty](https://github.com/venkatsait33/MERN_CHAT_APP).git
+git clone [[https://github.com/your-repo/chatty](https://github.com/venkatsait33/MERN_CHAT_APP).git](https://github.com/venkatsait33/MERN_CHAT_APP.git)
 cd backend
 npm install
 npm start
@@ -66,4 +66,4 @@ npm run dev
 
 💡 Ready to chat in real-time? Let's connect & collaborate!  
 
-🔗 **GitHub Repository:** [Your GitHub Repo Link]  
+🔗 **GitHub Repository:** [[Your GitHub Repo Link] ](https://github.com/venkatsait33/MERN_CHAT_APP.git) 
