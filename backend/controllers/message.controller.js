@@ -1,3 +1,4 @@
+import { getReceiverSocketId, io } from "../lib/socket.js"
 import { Message } from "../model/message.model.js"
 import { User } from "../model/user.model.js"
 import cloudinary from "../utils/cloudinary.js"
@@ -62,7 +63,11 @@ export const sendMessage = async (req, res) => {
 
         await newMessage.save();
 
-        console.log("Message saved:", newMessage); // Debug log
+        // connecting socket to get receiver socket id and emit msg to selected user by using receiver socket id
+        const receiverSocketId = getReceiverSocketId(receiverId);
+        if (receiverSocketId) {
+            io.to(receiverSocketId).emit("newMessage", newMessage);
+        }
 
         res.status(200).json({
             success: true,

@@ -3,22 +3,28 @@ import MessageInput from "../components/MessageInput";
 import MessageSkeleton from "../components/skeltons/MessageSkeleton";
 import { useAuthStore } from "../store/useAuthStore";
 import { useChatStore } from "../store/useChatStore"
-import { useEffect } from "react"
-import {formatMessageTime} from '../lib/formateMessageTime'
+import { useEffect, useRef } from "react"
+import { formatMessageTime } from '../lib/formateMessageTime'
 
 const ChatContainer = () => {
-  const { messages, getMessages, isMessagesLoading, selectedUser } = useChatStore()
-
-  console.log(messages)
-
-
-
+  const { messages, getMessages, isMessagesLoading, selectedUser, subscribeToMessages, unSubscribeToMessages } = useChatStore()
   const { authUser } = useAuthStore()
+  const messageRef = useRef(null)
 
   useEffect(() => {
-    getMessages(selectedUser._id)
+    getMessages(selectedUser._id);
+    subscribeToMessages();
+    return () => {
+      unSubscribeToMessages();
+    }
 
-  }, [selectedUser._id, getMessages]);
+  }, [selectedUser._id, getMessages, subscribeToMessages, unSubscribeToMessages]);
+
+  useEffect(() => {
+    if (messageRef.current && messages) {
+      messageRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+  }, [messages])
 
   if (isMessagesLoading) {
     return <div className="flex flex-col flex-1 overflow-auto">
@@ -38,7 +44,8 @@ const ChatContainer = () => {
       <div className="flex-1 p-4 space-y-4 overflow-y-auto">
         {
           messages.map((message) => (
-            <div key={message._id} className={` chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}>
+            <div key={message._id} className={` chat ${message.senderId === authUser._id ? "chat-end" : "chat-start"}`}
+              ref={messageRef}>
               <div className="chat-image avatar">
                 <div className="border rounded-full size-10">
                   <img
