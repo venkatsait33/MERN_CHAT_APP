@@ -7,7 +7,7 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const url = process.env.FRONTEND_URL 
+const url = "https://mern-realtime-chat-app-sage.vercel.app" || process.env.FRONTEND_URL
 const io = new Server(server, {
     cors: {
         origin: [url],
