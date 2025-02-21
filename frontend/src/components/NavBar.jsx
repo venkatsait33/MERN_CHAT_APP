@@ -20,19 +20,14 @@ const NavBar = () => {
           </div>
 
           <div className="flex items-center gap-2">
-            <Link
-              to={"/settings"}
-              className={`
-              btn btn-sm gap-2 transition-colors
-              
-              `}
-            >
-              <Settings className="w-4 h-4" />
-              <span className="hidden sm:inline">Settings</span>
-            </Link>
 
             {authUser && (
               <>
+                <p className="">User: <span className="text-xl ms:text-sm text-base-content">
+
+                  {authUser.fullName}
+                </span>
+                </p>
                 <Link to={"/profile"} className={`btn btn-sm gap-2`}>
                   <User className="size-5" />
                   <span className="hidden sm:inline">Profile</span>
@@ -44,6 +39,17 @@ const NavBar = () => {
                 </button>
               </>
             )}
+
+            <Link
+              to={"/settings"}
+              className={`
+              btn btn-sm gap-2 transition-colors
+              
+              `}
+            >
+              <Settings className="w-4 h-4" />
+              <span className="hidden sm:inline">Settings</span>
+            </Link>
           </div>
         </div>
       </div>

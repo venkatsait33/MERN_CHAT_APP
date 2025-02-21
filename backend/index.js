@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.json({ limit: "10mb" })); // Increase JSON payload size limit
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(cors({
-    origin: URL,
+    origin: "",
     credentials: true
 }));
 
