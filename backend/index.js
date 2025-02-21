@@ -16,20 +16,15 @@ const URL = process.env.FRONTEND_URL ||"http://localhost:5173"
 app.use(cookieParser());
 app.use(express.json({ limit: "10mb" })); // Increase JSON payload size limit
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
-app.use(cors({
+const corsOptions = {
     origin: URL,
-    credentials: true
-}));
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", URL);
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", "true");
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
-    }
-    next();
-});
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type, Authorization",
+    credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions));
 
 app.use('/api/auth', userRoutes)
 app.use('/api/messages', messageRouter)
