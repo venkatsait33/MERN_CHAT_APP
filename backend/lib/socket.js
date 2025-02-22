@@ -5,9 +5,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
+const url = "https://mern-realtime-chat-app-sage.vercel.app" || process.env.FRONTEND_URL
 const app = express();
 const server = http.createServer(app);
-const url = "https://mern-realtime-chat-app-sage.vercel.app"
 const io = new Server(server, {
     cors: {
         origin: [url],
@@ -16,18 +16,7 @@ const io = new Server(server, {
     }
 });
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", process.env.FRONTEND_URL || "https://mern-realtime-chat-app-sage.vercel.app");
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", "true");
 
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
-    }
-
-    next();
-});
 
 export function getReceiverSocketId(userId) {
     return userSocketMap[userId];
@@ -46,7 +35,7 @@ io.on('connection', (socket) => {
     // io.emit() is used to emit to all connected clients or users
     io.emit("getOnlineUsers", Object.keys(userSocketMap))
     socket.on('disconnect', () => {
-       // console.log("a user disconnected", socket.id);
+        // console.log("a user disconnected", socket.id);
         delete userSocketMap[userId]
         io.emit("getOnlineUsers", Object.keys(userSocketMap))
     })
