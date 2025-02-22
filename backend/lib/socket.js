@@ -7,11 +7,20 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const url = "https://mern-realtime-chat-app-sage.vercel.app" || process.env.FRONTEND_URL
+const url = process.env.FRONTEND_URL || "https://mern-realtime-chat-app-sage.vercel.app"
 const io = new Server(server, {
     cors: {
         origin: [url],
+        methods: ["GET", "POST"],
+        credentials: true,
     }
+});
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", url);
+    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+    res.header("Access-Control-Allow-Credentials", "true");
+    next();
 });
 
 export function getReceiverSocketId(userId) {
