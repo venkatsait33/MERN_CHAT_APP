@@ -5,14 +5,12 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 
-const url = "https://mern-realtime-chat-app-sage.vercel.app" || process.env.FRONTEND_URL
+const url = process.env.FRONTEND_URL || "https://mern-realtime-chat-app-sage.vercel.app"
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
         origin: [url],
-        methods: ["GET", "POST"],
-        credentials: true,
     }
 });
 

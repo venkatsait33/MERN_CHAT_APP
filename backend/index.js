@@ -11,29 +11,14 @@ dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 
-const URL = "https://mern-realtime-chat-app-sage.vercel.app" || process.env.FRONTEND_URL;
+const URL = process.env.FRONTEND_URL || "https://mern-realtime-chat-app-sage.vercel.app";
 
 app.use(cookieParser());
 app.use(express.json({ limit: "10mb" })); // Increase JSON payload size limit
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "https://mern-realtime-chat-app-sage.vercel.app" || process.env.FRONTEND_URL);
-    res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-    res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-    res.header("Access-Control-Allow-Credentials", "true");
-
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(200);
-    }
-
-    next();
-});
-
-
 app.use(cors({
     origin: [URL],
-    methods: ["GET", "POST"],
     credentials: true
 }
 ));
