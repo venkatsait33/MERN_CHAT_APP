@@ -46,7 +46,7 @@ export const useChatStore = create((set, get) => ({
         try {
             const response = await axiosInstance.post(`/messages/send/${selectedUser._id}`, messageData);
 
-            console.log("Full response:", response.data); // Debug API response
+            //console.log("Full response:", response.data); // Debug API response
 
             // Extract correct data
             const newMessage = response.data?.data; // Should be a single message object
