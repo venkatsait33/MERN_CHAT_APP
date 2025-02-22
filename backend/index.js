@@ -11,7 +11,7 @@ dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 
-const URL = process.env.FRONTEND_URL || "https://mern-realtime-chat-app-sage.vercel.app"
+const URL ="https://mern-realtime-chat-app-sage.vercel.app"
 
 app.use(cookieParser());
 app.use(express.json({ limit: "10mb" })); // Increase JSON payload size limit
