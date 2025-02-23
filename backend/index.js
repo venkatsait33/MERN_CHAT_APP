@@ -25,11 +25,6 @@ app.use(cors({
 }));
 
 // ✅ Handle Preflight Requests
-app.options("*", cors({
-    origin: [URL],
-    credentials: true
-}));
-
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", URL);
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
