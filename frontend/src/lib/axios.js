@@ -1,8 +1,9 @@
-import axios from "axios"
+import axios from "axios";
 
-const url = import.meta.env.VITE_BACKEND_URL + "/api" || "https://mern-chat-app-backend-olive.vercel.app" +"/api"
+// ✅ Ensure correct backend URL is used
+const url = import.meta.env.VITE_BACKEND_URL || "https://mern-chat-app-backend-olive.vercel.app";
 
 export const axiosInstance = axios.create({
-    baseURL: url,
+    baseURL: `${url}/api`,
     withCredentials: true
-})
+});

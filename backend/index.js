@@ -18,10 +18,17 @@ app.use(express.json({ limit: "10mb" })); // Increase JSON payload size limit
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
 app.use(cors({
+    origin: [URL], // Ensure correct frontend URL
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type, Authorization",
+    credentials: true
+}));
+
+// ✅ Handle Preflight Requests
+app.options("*", cors({
     origin: [URL],
     credentials: true
-}
-));
+}));
 
 app.use('/api/auth', userRoutes)
 app.use('/api/messages', messageRouter)
